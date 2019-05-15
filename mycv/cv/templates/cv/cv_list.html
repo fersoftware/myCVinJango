@@ -1,10 +1,182 @@
+{% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+
+
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/cv-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="{% static 'css/cv.css' %}">
+        <!--<![endif]-->
+
 </head>
 <body>
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+            <h1 class="brand-title">Meu Curriculum</h1>
+            <p>
+                <span class="post-category post-category-design">Django</span> - <span class="post-category post-category-design">Python</span>
+            </p>
+            <p>
+                <span class="post-category post-category-design">SQLite</span> - <span class="post-category post-category-design">PURECSS.io</span>
+
+            </p>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="pure-button" href="https://github.com/fersoftware/myCVinJango">GIT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="pure-button" href="https://www.linkedin.com/in/fersoftware/">LinkedIn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            <div class="posts">
+                {% for list in listPerson %}
+                <section class="post">
+                    <header class="post-header">
+                        <div class="pure-g">
+                            <div class="pure-u-1 pure-u-md-1-2">
+                                <h2 class="post-title"> {{ list.name }}</h2>
+                                <p class="post-meta">
+                                    {{ list.address }}
+                                </p>
+                                <p class="post-meta">
+                                    <a href="mailto:{{ list.email }}?Subject=Eu%20vi%20seu%20CV_DJANGO" class="post-author">{{ list.email }}</a>
+                                </p>
+                            </div>
+                            <div class="pure-u-1 pure-u-md-1-2">
+                                <h1 class="content-subhead">{{ list.age }} anos</h1>
+                                <h1 class="content-subhead">Tel.: {{ list.phone }}</h1>
+                            </div>
+                        </div>
+                    </header>
+                </section>
+                {% endfor %}
+            </div>
+
+            <div class="posts">
+                <h1 class="content-subhead">OBJETIVO</h1>
+                <section class="post">
+                    <header class="post-header">
+                       {% for list in listObjective %}
+                         <h2 class="post-title">{{ list }}</h2>
+                        {% endfor %}
+                    </header>
+                </section>
+
+                <h1 class="content-subhead">EXPERIÊNCIA</h1>
+                <section class="post">
+                    <header class="post-header">
+                       {% for list in listProfXP %}
+                        <span class="post-title">{{ list.company }}</span>
+                        <p class="post-meta">
+                            <span class="post-category post-category-design">{{ list.post }}</span> - Período: {{ list.period }} - <span class="post-category post-category-pure">{{ list.location }}</span>
+                        </p>
+                        <div class="post-description">
+                        <p>
+                           {{ list.description }}
+                        </p>
+                    </div>
+                        {% endfor %}
+                    </header>
+                </section>
+
+                 <h1 class="content-subhead">EDUCAÇÃO</h1>
+                <section class="post">
+                    <header class="post-header">
+                       {% for list in listEducation %}
+                        <span class="post-title">{{ list.campus }}</span>
+                        <p class="post-meta">
+                            <span class="post-category post-category-design">{{ list.course }}</span> - Período: {{ list.period }} - <span class="post-category post-category-pure">{{ list.location }}</span>
+                        </p>
+                        <div class="post-description">
+                        <p>
+                           {{ list.description }}
+                        </p>
+                    </div>
+                        {% endfor %}
+                    </header>
+                </section>
+
+                 <h1 class="content-subhead">HABILIDADES</h1>
+                <section class="post">
+                    <header class="post-header">
+                       {% for list in listSkill %}
+
+                        <div class="post-description">
+                        <p>
+                           {{ list.description }}
+                        </p>
+                    </div>
+                        {% endfor %}
+                    </header>
+                </section>
+
+                <h1 class="content-subhead">IDIOMAS</h1>
+                <section class="post">
+                    <header class="post-header">
+                       {% for list in listLanguage %}
+                        <span class="post-title">{{ list.name }}</span>
+                        <p class="post-meta">
+                            <span class="post-category post-category-design">{{ list.Idiom }}</span> - Período: {{ list.period }}
+                        </p>
+                        {% endfor %}
+                    </header>
+                </section>
+
+                  <h1 class="content-subhead">CERTIFICADOS</h1>
+                <section class="post">
+                    <header class="post-header">
+                       {% for list in listCertificate %}
+
+                        <div class="post-description">
+                        <p>
+                           {{ list.description }}
+                        </p>
+                    </div>
+                        {% endfor %}
+                    </header>
+                </section>
+
+
+
+
+            </div>
+
+            <div class="footer">
+                <div class="pure-menu pure-menu-horizontal">
+                    <ul>
+                        <li class="pure-menu-item"><a href="http://purecss.io/" class="pure-menu-link">About</a></li>
+                        <li class="pure-menu-item"><a href="http://twitter.com/yuilibrary/" class="pure-menu-link">Twitter</a></li>
+                        <li class="pure-menu-item"><a href="http://github.com/pure-css/pure/" class="pure-menu-link">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>

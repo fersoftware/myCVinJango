@@ -40,7 +40,6 @@ class ProfessionalExperience(models.Model):
 class Education(models.Model):
     campus = models.CharField('Escola', max_length=150)
     course = models.CharField('Curso', max_length=150)
-    course = models.CharField('Curso', max_length=150)
     location = models.CharField('Local', max_length=80)
     period = models.CharField('Periodo', max_length=80)
     description = models.TextField('Descricao')
